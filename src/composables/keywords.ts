@@ -1,13 +1,15 @@
 import { ref } from 'vue';
 
+import MATRIX_CONFIG from '@/config/enums';
+
 import useApi from './api';
 
+// declarations
 import { keywordsJSON, Keyword } from './keywords.d';
 
 export default async function useKeywords() {
   const bingoMatrix = ref<Keyword[][]>([]);
-  const totalRowCount = 5;
-  const totalColCount = 5;
+  const { totalRowCount, totalColCount } = MATRIX_CONFIG;
   const totalCellCount = totalRowCount * totalColCount;
 
   const { response: keywords, request } = useApi<keywordsJSON>('../api/keywords.json');
